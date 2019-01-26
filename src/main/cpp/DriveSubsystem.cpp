@@ -116,11 +116,11 @@ void DriveSubsystem::RobotInit()
 #if NAVX_USB
     try {
         m_ahrs = new AHRS(SerialPort::Port::kUSB);
-        DriverStation::ReportWarning("NavX USB found");
+        frc::DriverStation::ReportWarning("NavX USB found");
         m_ahrs->Reset();
         m_navxOk = true;
     } catch (std::exception& ex) {
-        DriverStation::ReportError("NavX USB MISSING");
+        frc::DriverStation::ReportError("NavX USB MISSING");
         m_navxOk = false;
         m_ahrs = NULL;
     }
@@ -128,11 +128,11 @@ void DriveSubsystem::RobotInit()
 #if NAVX_MXP
     try {
         m_ahrs = new AHRS(SPI::kMXP);
-        DriverStation::ReportWarning("NavX MXP found");
+        frc::DriverStation::ReportWarning("NavX MXP found");
         m_ahrs->Reset();
         m_navxOk = true;
     } catch (std::exception& ex) {
-        DriverStation::ReportError("NavX MXP MISSING");
+        frc::DriverStation::ReportError("NavX MXP MISSING");
         m_navxOk = false;
         m_ahrs = NULL;
     }
@@ -140,11 +140,11 @@ void DriveSubsystem::RobotInit()
 #if IMU_MXP
     try {
         m_imu = new ADIS16448_IMU();
-        DriverStation::ReportWarning("IMU MXP found");
+        frc::DriverStation::ReportWarning("IMU MXP found");
     	m_imu->Calibrate();
     	m_imu->Reset();
     } catch (std::exception & ex) {
-        DriverStation::ReportWarning("IMU MXP MISSING");
+        frc::DriverStation::ReportWarning("IMU MXP MISSING");
         m_imu = NULL;
     }
 #endif

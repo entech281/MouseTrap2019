@@ -102,6 +102,7 @@ void EntechRobot::CloseLog(void)
 
 void EntechRobot::RobotInit()
 {
+    frc::DriverStation::ReportWarning("MouseTrap2019 Code: mandrews");
 //    m_lw = frc::LiveWindow::GetInstance();
     m_drive = new DriveSubsystem(this,"drive");
     m_climber = new ClimberSubsystem(this, "climber");
