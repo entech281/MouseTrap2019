@@ -149,6 +149,7 @@ void ShooterSubsystem::AutonomousPeriodic()
     switch (m_mode) {
     case kVbus:
         frc::SmartDashboard::PutString("Shooter Mode", "PercentVbus");
+        frc::SmartDashboard::PutNumber("Shooter Speed", m_speed);
         m_ShooterMotor->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, m_speed);
         break;
     case kRPM:

@@ -46,6 +46,8 @@ const int c_gpshooterSpd_BTNid = 4;
 const int c_gppickup_BTNid = 7;
 const int c_gpdrop_BTNid = 8;
 const int c_gpfire_BTNid = 5;
+const int c_gpshootFaster_BTNid = 13;
+const int c_gpshootSlower_BTNid = 15;
 #endif
 #if LOGITECH_GAMEPAD
 const int c_gpclimb_BTNid = 4;
@@ -55,6 +57,8 @@ const int c_gpfire_BTNid = 2;
 const int c_gppickup_BTNid = 6;
 const int c_gpautodrop_BTNid = 5;
 const int c_gpdrop_BTNid = 7;
+const int c_gpshootFaster_BTNid = 13;
+const int c_gpshootSlower_BTNid = 15;
 #endif
 
 // Operator Panel buttons

@@ -67,6 +67,8 @@ private:
     OperatorButton *m_gp_pickupButton;
     OperatorButton *m_gp_autodropButton;
     OperatorButton *m_gp_fireButton;
+    OperatorButton *m_gp_shootFasterButton;
+    OperatorButton *m_gp_shootSlowerButton;
 
     frc::Joystick *m_buttonpanel;
     OperatorButton *m_bp_climbButton;
@@ -125,5 +127,6 @@ private:
 
     frc::Preferences *m_prefs;
     double m_shooterSpeed;
+    double m_shooterSpeedDemo;
     double m_shooterTime;
 };

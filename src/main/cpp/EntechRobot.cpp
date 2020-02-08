@@ -30,6 +30,8 @@ EntechRobot::EntechRobot()
     , m_gp_pickupButton(NULL)
     , m_gp_autodropButton(NULL)
     , m_gp_fireButton(NULL)
+    , m_gp_shootFasterButton(NULL)
+    , m_gp_shootSlowerButton(NULL)
     , m_buttonpanel(NULL)
     , m_bp_climbButton(NULL)
     , m_bp_dropButton(NULL)
@@ -60,6 +62,7 @@ EntechRobot::EntechRobot()
 
     , m_prefs(NULL)
     , m_shooterSpeed(0.0)
+    , m_shooterSpeedDemo(0.5)
     , m_shooterTime(4.5)
 {
     m_robotSubsystems.clear();
@@ -127,6 +130,8 @@ void EntechRobot::RobotInit()
         m_gp_autodropButton = new OperatorButton(m_gamepad,c_gpautodrop_BTNid);
         m_gp_dropButton = new OperatorButton(m_gamepad,c_gpdrop_BTNid);
         m_gp_fireButton = new OperatorButton(m_gamepad,c_gpfire_BTNid);
+        m_gp_shootFasterButton = new OperatorButton(m_gamepad,c_gpshootFaster_BTNid);
+        m_gp_shootSlowerButton = new OperatorButton(m_gamepad,c_gpshootSlower_BTNid);
     }
     m_buttonpanel = new Joystick(c_operatorBPid);
     if (m_buttonpanel) {
@@ -332,8 +337,15 @@ void EntechRobot::TeleopPeriodic()
         }
     }
 
+    if (m_gp_shootFasterButton && (m_gp_shootFasterButton->Get() == OperatorButton::kJustPressed)) {
+        m_shooterSpeedDemo += 0.05;
+    }
+    if (m_gp_shootSlowerButton && (m_gp_shootSlowerButton->Get() == OperatorButton::kJustPressed) ) {
+        m_shooterSpeedDemo -= 0.05;
+    }
     if (m_gp_useShooterPID && m_gp_useShooterPID->GetBool()) {
-        m_shooter->SetRPM(m_shooterSpeed);
+        // m_shooter->SetRPM(m_shooterSpeed);
+        m_shooter->Forward(m_shooterSpeedDemo);
     } else if (m_bp_shooterOnButton && m_bp_shooterOnButton->GetBool()) {
         m_shooter->Forward(0.5*(1.0-m_buttonpanel->GetX()));
     } else {
@@ -367,7 +379,7 @@ void EntechRobot::TeleopPeriodic()
 
 void EntechRobot::AutonomousInit()
 {
-    m_autonomousActive = true;
+    m_autonomousActive = false;
     m_autoSecondTry = false;
     m_autoNudgeDir = kLeft;
     m_autoNudgeCount = 0;
